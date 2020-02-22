@@ -2,7 +2,6 @@ public class Planet
 {
 	public double xxPos, yyPos, xxVel, yyVel, mass;
 	public String imgFileName;
-	public double r, force, forcex, forcey;
 	public Planet(double xP, double yP, double xV, double yV, double m, String img)
 	{
 		xxPos = xP;
@@ -23,17 +22,20 @@ public class Planet
 	}
 	public double calcDistance(Planet p)
 	{
+		double r;
 		r = Math.sqrt((p.xxPos - xxPos) * (p.xxPos - xxPos) + (p.yyPos - yyPos) * (p.yyPos - yyPos));
 		return r;
 	}
 	public double calcForceExertedBy(Planet p)
 	{
+		double r, force;
 		r = calcDistance(p);
 		force = 6.67E-11 * mass * p.mass / (r * r);
 		return force;
 	}
 	public double calcForceExertedByX(Planet p)
 	{
+		double r, force, forcex;
 		r = calcDistance(p);
 		force = calcForceExertedBy(p);
 		forcex = force * (p.xxPos - xxPos) / r;
@@ -41,6 +43,7 @@ public class Planet
 	}
 	public double calcForceExertedByY(Planet p)
 	{
+		double r, force, forcey;
 		r = calcDistance(p);
 		force = calcForceExertedBy(p);
 		forcey = force * (p.yyPos - yyPos) / r;
@@ -48,6 +51,7 @@ public class Planet
 	}
 	public double calcNetForceExertedByX(Planet[] p)
 	{
+		double r, force, forcex;
 		double netforcex = 0;
 		for (int i = 0; i < p.length; i++)
 		{
@@ -63,6 +67,7 @@ public class Planet
 	}
 	public double calcNetForceExertedByY(Planet[] p)
 	{
+		double r, force, forcey;
 		double netforcey = 0;
 		for (int i = 0; i < p.length; i++)
 		{
